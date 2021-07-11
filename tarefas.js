@@ -11,13 +11,19 @@ const TaskFactory = () => ({
   realizada: [true, false][Math.floor(Math.random() * 2)],
 });
 
-new Array(5).fill(0).map(() => Tarefas.push(TaskFactory()));
+new Array(2).fill(0).map(() => Tarefas.push(TaskFactory()));
+
+function marcarTarefa(el, task) {
+  task.realizada = !task.realizada;
+  el.classList.toggle("marcado");
+}
 
 function insereTarefaNaPagina(task) {
   const li = document.createElement("li");
   li.innerHTML = task?.nome;
   li.classList.add("item-tarefa");
   li.classList.add(`categoria-${task?.categoria}`);
+  li.onclick = () => marcarTarefa(li, task);
   if (task?.realizada) li.classList.add("marcado");
   taskList.appendChild(li);
   filterTasks();
