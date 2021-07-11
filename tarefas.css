@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Gorditas|Questrial');
+@import url("https://fonts.googleapis.com/css?family=Gorditas|Questrial");
 
-html, body {
+html,
+body {
   min-height: 100%;
 }
 
 body {
   text-align: center;
-  background-image:
-    url(imgs/fundo.png),
-    radial-gradient(farthest-corner at 92px 45px , #00b4ea 10%, #e289a6 72%);
+  background-image: url(imgs/fundo.png),
+    radial-gradient(farthest-corner at 92px 45px, #00b4ea 10%, #e289a6 72%);
   background-size: cover;
   background-position-x: 50%;
   background-attachment: fixed;
   /* mescla os 3 fundos: 1 imagem, 1 gradiente e 1 cor */
   background-blend-mode: hard-light;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 body.animando {
@@ -24,7 +24,7 @@ body.animando {
 /* faz o fundo ir clareando/escurecendo */
 @keyframes altera-fundo {
   0% {
-    background-color: rgba(255, 255, 255, 0.0);
+    background-color: rgba(255, 255, 255, 0);
   }
   100% {
     background-color: rgba(255, 255, 255, 0.5);
@@ -32,7 +32,7 @@ body.animando {
 }
 
 #marca {
-  font-family: 'Gorditas', cursive;
+  font-family: "Gorditas", cursive;
   font-weight: normal;
   font-size: 4em;
   line-height: 0.75em;
@@ -58,8 +58,7 @@ body.animando {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-              0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 #nova-tarefa {
@@ -75,7 +74,7 @@ body.animando {
   font: inherit;
   outline: none;
   border: none;
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
 }
 
 #nova-tarefa-nome {
@@ -169,4 +168,5 @@ body.animando {
 
 .item-tarefa.retido-no-filtro {
   opacity: 0.25;
+  transition: opacity ease-in-out 0.4;
 }

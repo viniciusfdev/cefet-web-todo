@@ -2,6 +2,7 @@ const taskList = document.getElementById("lista-tarefas");
 const addTask = document.getElementById("incluir-nova-tarefa");
 const inputName = document.getElementById("nova-tarefa-nome");
 const inputCategory = document.getElementById("nova-tarefa-categoria");
+const filterCategory = document.getElementById("filtro-de-categoria");
 const Tarefas = [];
 
 const TaskFactory = () => ({
@@ -19,9 +20,10 @@ function insereTarefaNaPagina(task) {
   li.classList.add(`categoria-${task?.categoria}`);
   if (task?.realizada) li.classList.add("marcado");
   taskList.appendChild(li);
+  filterTasks();
 }
 
-function criarTarefa(e) {
+function criarTarefa() {
   const newTask = {
     nome: inputName.value,
     categoria: inputCategory.value,
@@ -34,6 +36,22 @@ function criarTarefa(e) {
   inputName.focus();
 }
 
+function filterTasks() {
+  const cat = filterCategory.value;
+  const children = taskList.childNodes;
+
+  if (children?.forEach) {
+    children.forEach((child) => child.classList.remove("retido-no-filtro"));
+    children.forEach(
+      (child) =>
+        cat !== "" &&
+        !child.classList.contains(`categoria-${cat}`) &&
+        child.classList.add("retido-no-filtro")
+    );
+  }
+}
+
 taskList.innerHTML = "";
 Tarefas.forEach((task) => insereTarefaNaPagina(task));
-addTask.addEventListener("click", criarTarefa);
+addTask.onclick = criarTarefa;
+filterCategory.onchange = filterTasks;
