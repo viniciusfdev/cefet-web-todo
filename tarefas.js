@@ -24,16 +24,18 @@ function insereTarefaNaPagina(task) {
 }
 
 function criarTarefa() {
-  const newTask = {
-    nome: inputName.value,
-    categoria: inputCategory.value,
-    realizada: false,
-  };
+  if (inputName.value !== "") {
+    const newTask = {
+      nome: inputName.value,
+      categoria: inputCategory.value,
+      realizada: false,
+    };
 
-  Tarefas.push(newTask);
-  insereTarefaNaPagina(newTask);
-  inputName.value = "";
-  inputName.focus();
+    Tarefas.push(newTask);
+    insereTarefaNaPagina(newTask);
+    inputName.value = "";
+    inputName.focus();
+  }
 }
 
 function filterTasks() {
@@ -55,3 +57,4 @@ taskList.innerHTML = "";
 Tarefas.forEach((task) => insereTarefaNaPagina(task));
 addTask.onclick = criarTarefa;
 filterCategory.onchange = filterTasks;
+document.onkeyup = (e) => e.key === "Enter" && criarTarefa();
