@@ -1,4 +1,7 @@
 const taskList = document.getElementById("lista-tarefas");
+const addTask = document.getElementById("incluir-nova-tarefa");
+const inputName = document.getElementById("nova-tarefa-nome");
+const inputCategory = document.getElementById("nova-tarefa-categoria");
 const Tarefas = [];
 
 const TaskFactory = () => ({
@@ -18,5 +21,19 @@ function insereTarefaNaPagina(task) {
   taskList.appendChild(li);
 }
 
+function criarTarefa(e) {
+  const newTask = {
+    nome: inputName.value,
+    categoria: inputCategory.value,
+    realizada: false,
+  };
+
+  Tarefas.push(newTask);
+  insereTarefaNaPagina(newTask);
+  inputName.value = "";
+  inputName.focus();
+}
+
 taskList.innerHTML = "";
 Tarefas.forEach((task) => insereTarefaNaPagina(task));
+addTask.addEventListener("click", criarTarefa);
